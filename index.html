@@ -2,115 +2,312 @@
 <html lang="en">
 <head>
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Sanity Leakage</title>
+<title>Sanity Leakage</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <style>
+<style>
 
-    body{
-      font-family: Arial, Helvetica, sans-serif;
-      overflow-x:hidden;
-      background:black;
-      color:white;
-      scroll-behavior:smooth;
-    }
+body{
+  background:#000;
+  color:white;
+  font-family:Arial, Helvetica, sans-serif;
+  overflow-x:hidden;
+}
 
-    .hero{
-      background:
-      linear-gradient(to right, rgba(0,0,0,.85), rgba(0,0,0,.45)),
-      url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1800&auto=format&fit=crop');
+html{
+  scroll-behavior:smooth;
+}
 
-      background-size:cover;
-      background-position:center;
-    }
+.hero{
+  background:
+  linear-gradient(to bottom, rgba(0,0,0,.65), rgba(0,0,0,.9)),
+  url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1800&auto=format&fit=crop');
 
-    .product img{
-      transition:.4s;
-    }
+  background-size:cover;
+  background-position:center;
+}
 
-    .product:hover img{
-      transform:scale(1.06);
-    }
+.product-image{
+  transition:.4s;
+}
 
-    .glass{
-      backdrop-filter:blur(12px);
-      background:rgba(255,255,255,.06);
-    }
+.product-image:hover{
+  transform:scale(1.03);
+}
 
-    .marquee{
-      white-space:nowrap;
-      overflow:hidden;
-      box-sizing:border-box;
-    }
+.glass{
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(12px);
+}
 
-    .marquee span{
-      display:inline-block;
-      padding-left:100%;
-      animation:marquee 15s linear infinite;
-    }
-
-    @keyframes marquee{
-      0%{
-        transform:translateX(0);
-      }
-
-      100%{
-        transform:translateX(-100%);
-      }
-    }
-
-  </style>
+</style>
 
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <header class="fixed top-0 left-0 w-full z-50 border-b border-white/10 bg-black/80 backdrop-blur-lg">
+<!-- NAVBAR -->
+<header class="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-lg border-b border-white/10">
 
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
 
-      <!-- LOGO -->
-      <div class="flex items-center gap-3">
+    <h1 class="text-xl md:text-2xl uppercase tracking-[6px] font-black">
+      Sanity Leakage
+    </h1>
 
-        <!-- FLOWER LOGO -->
+    <div class="flex gap-5 text-xl">
+
+      <button>♡</button>
+      <button>🛒</button>
+
+    </div>
+
+  </div>
+
+</header>
+
+<!-- HERO -->
+<section class="hero min-h-screen flex items-center justify-center px-6 pt-32">
+
+  <div class="max-w-5xl mx-auto text-center">
+
+    <!-- BIG FLOWER LOGO -->
+    <img
+      src="IMG-20260519-WA0001.jpg"
+      class="w-56 md:w-80 mx-auto mb-6"
+    />
+
+    <!-- BIG GRAFFITI LOGO -->
+    <img
+      src="IMG-20260519-WA0003.jpg"
+      class="w-72 md:w-[500px] mx-auto mb-10 rounded-2xl"
+    />
+
+    <p class="uppercase tracking-[6px] text-sm text-gray-300 mb-5">
+      Little Species
+    </p>
+
+    <h1 class="text-5xl md:text-8xl font-black uppercase leading-none mb-8">
+      Step Away <br> From The Ordinary
+    </h1>
+
+    <p class="max-w-2xl mx-auto text-gray-300 text-lg leading-relaxed mb-10">
+      Premium monochrome streetwear inspired by Johannesburg culture, underground aesthetics and futuristic fashion.
+    </p>
+
+    <button class="bg-white text-black px-10 py-4 uppercase tracking-[4px] font-black hover:bg-transparent hover:text-white border border-white transition">
+      Shop Now
+    </button>
+
+  </div>
+
+</section>
+
+<!-- PRODUCT SECTION -->
+<section class="py-24 px-6">
+
+  <div class="max-w-7xl mx-auto">
+
+    <div class="text-center mb-14">
+
+      <p class="uppercase tracking-[5px] text-gray-400 mb-4">
+        Featured Drop
+      </p>
+
+      <h2 class="text-5xl md:text-7xl font-black uppercase">
+        Reflective Windbreaker
+      </h2>
+
+    </div>
+
+    <!-- PRODUCT -->
+    <div class="grid md:grid-cols-2 gap-8 items-start">
+
+      <!-- IMAGE 1 -->
+      <div class="overflow-hidden rounded-3xl bg-zinc-900">
+
         <img
-          src="IMG-20260519-WA0001.jpg"
-          alt="Sanity Leakage"
-          class="w-12 md:w-14 object-contain"
-        />
-
-        <!-- TEXT LOGO -->
-        <img
-          src="IMG-20260519-WA0003.jpg"
-          alt="Sanity"
-          class="h-8 md:h-10 object-contain"
+          src="IMG_20260520_150513.jpg"
+          class="w-full object-cover product-image"
         />
 
       </div>
 
-      <!-- NAV -->
-      <nav class="hidden md:flex gap-8 uppercase text-sm tracking-[3px] font-semibold">
+      <!-- IMAGE 2 -->
+      <div class="overflow-hidden rounded-3xl bg-zinc-900">
 
-        <a href="#" class="hover:text-gray-400 transition">
-          Unisex
-        </a>
+        <img
+          src="IMG_20260520_150529.jpg"
+          class="w-full object-cover product-image"
+        />
 
-        <a href="#" class="hover:text-gray-400 transition">
-          Hoodies
-        </a>
+      </div>
 
-        <a href="#" class="hover:text-gray-400 transition">
-          Tees
-        </a>
+    </div>
 
-        <a href="#" class="hover:text-gray-400 transition">
-          Pants
-        </a>
+    <!-- PRODUCT INFO -->
+    <div class="max-w-3xl mx-auto text-center mt-14">
+
+      <h3 class="text-4xl font-black uppercase mb-5">
+        Sanity Leakage Reflective Jacket
+      </h3>
+
+      <p class="text-gray-400 text-lg leading-relaxed mb-8">
+        Waterproof reflective oversized windbreaker featuring premium embroidery, futuristic detailing and signature Sanity Leakage branding.
+      </p>
+
+      <div class="text-5xl font-black mb-10">
+        R950
+      </div>
+
+      <button class="bg-white text-black px-12 py-5 uppercase tracking-[4px] font-black hover:bg-transparent hover:text-white border border-white transition w-full md:w-auto">
+        Add To Cart
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section class="py-24 border-y border-white/10 px-6">
+
+  <div class="max-w-4xl mx-auto text-center">
+
+    <p class="uppercase tracking-[5px] text-gray-400 mb-5">
+      About The Brand
+    </p>
+
+    <h2 class="text-5xl md:text-7xl font-black uppercase mb-8">
+      Little Species
+    </h2>
+
+    <p class="text-gray-400 text-lg leading-relaxed">
+      Sanity Leakage represents individuality, rebellion and elevated street culture. Built for creators, outsiders and visionaries.
+    </p>
+
+  </div>
+
+</section>
+
+<!-- NEWSLETTER -->
+<section class="py-24 px-6">
+
+  <div class="max-w-3xl mx-auto glass rounded-3xl border border-white/10 p-10 text-center">
+
+    <h2 class="text-4xl md:text-5xl font-black uppercase mb-6">
+      Stay Connected
+    </h2>
+
+    <p class="text-gray-400 mb-8">
+      Join the Sanity Leakage community for future drops and updates.
+    </p>
+
+    <div class="flex flex-col md:flex-row gap-4">
+
+      <input
+        type="email"
+        placeholder="Enter your email"
+        class="flex-1 bg-transparent border border-white px-6 py-4 outline-none"
+      />
+
+      <button class="bg-white text-black px-8 py-4 uppercase tracking-[4px] font-black hover:bg-gray-200 transition">
+        Subscribe
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-white/10 py-16 px-6">
+
+  <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+
+    <!-- BRAND -->
+    <div>
+
+      <img
+        src="IMG-20260519-WA0001.jpg"
+        class="w-20 mb-6"
+      />
+
+      <p class="text-gray-400 leading-relaxed">
+        Premium monochrome fashion inspired by underground culture and futuristic street aesthetics.
+      </p>
+
+    </div>
+
+    <!-- SHOP -->
+    <div>
+
+      <h4 class="uppercase tracking-[4px] font-black mb-6">
+        Shop
+      </h4>
+
+      <ul class="space-y-4 text-gray-400">
+
+        <li>Jackets</li>
+        <li>Streetwear</li>
+        <li>Limited Drop</li>
+        <li>Accessories</li>
+
+      </ul>
+
+    </div>
+
+    <!-- SUPPORT -->
+    <div>
+
+      <h4 class="uppercase tracking-[4px] font-black mb-6">
+        Support
+      </h4>
+
+      <ul class="space-y-4 text-gray-400">
+
+        <li>Shipping</li>
+        <li>Returns</li>
+        <li>FAQs</li>
+        <li>Email: Cruzaliancy@gmail.com</li>
+
+      </ul>
+
+    </div>
+
+    <!-- SOCIAL -->
+    <div>
+
+      <h4 class="uppercase tracking-[4px] font-black mb-6">
+        Socials
+      </h4>
+
+      <div class="flex gap-5 text-3xl">
+
+        <button>📸</button>
+        <button>🎵</button>
+        <button>🐦</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="text-center text-gray-500 mt-16 uppercase tracking-[4px] text-sm">
+    © 2026 Sanity Leakage — All Rights Reserved
+  </div>
+
+</footer>
+
+</body>
+</html>        </a>
 
         <a href="#" class="hover:text-gray-400 transition">
           New Drop
