@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sanity Leakage | Little Species</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://tailwindcss.com"></script>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -26,7 +26,7 @@
         }
         .hero {
             background: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(3,3,3,1)), 
-                        url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1800&auto=format&fit=crop');
+                        url('https://unsplash.com');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -109,7 +109,7 @@
     <div class="glow-orb top-3/4 right-[-200px]"></div>
 
     <!-- CART SIDEBAR (DRAWER) -->
-    <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full md:w-[450px] bg-[#09090b] z-[100] border-l border-white/10 translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] p-8 flex flex-col justify-between backdrop-blur-xl">
+    <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full md:w-[450px] bg-[#09090b] z-[60] border-l border-white/10 translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] p-8 flex flex-col justify-between backdrop-blur-xl">
         <div>
             <div class="flex items-center justify-between border-b border-white/10 pb-6">
                 <h3 class="uppercase tracking-[4px] font-bold text-sm">Your Cart (1)</h3>
@@ -117,7 +117,7 @@
             </div>
             <div class="mt-8 flex gap-5 border-b border-white/5 pb-6">
                 <div class="w-20 h-24 bg-zinc-900 rounded-xl overflow-hidden border border-white/10 flex-shrink-0">
-                    <img src="IMG_20260520_150513.jpg" class="w-full h-full object-cover">
+                    <img src="https://unsplash.com" class="w-full h-full object-cover">
                 </div>
                 <div class="flex flex-col justify-between py-1 flex-1">
                     <div>
@@ -171,15 +171,12 @@
     <!-- HERO SECTION -->
     <section class="hero min-h-screen flex items-center justify-center px-6 pt-32 relative overflow-hidden">
         <div class="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
-            <!-- BLACK FLOWER LOGO -->
-            <div class="w-64 md:w-[380px] opacity-80 mix-blend-screen transform hover:scale-[1.02] transition duration-700 ease-out">
-                <img src="IMG-20260519-WA0001.jpg" alt="Brand Motif" class="w-full h-auto">
+            <!-- REPLACED: FIRST WHITE IMAGE NOW SHOWS THE GIRL IN YELLOW -->
+            <div class="w-64 md:w-[380px] opacity-90 transform hover:scale-[1.02] transition duration-700 ease-out rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                <img src="https://unsplash.com" alt="Featured Look" class="w-full h-auto">
             </div>
-            <!-- WHITE GRAFFITI LOGO -->
-            <div class="w-[280px] md:w-[620px] opacity-95 mix-blend-lighten -mt-4 mb-8">
-                <img src="IMG-20260519-WA0003.jpg" alt="Sanity Leakage" class="w-full h-auto">
-            </div>
-            <p class="uppercase tracking-[10px] text-zinc-500 text-[10px] md:text-xs mb-8 font-semibold">Cult Luxury Architecture</p>
+            <!-- REMOVED: THE SECOND BLACK GRAFFITI IMAGE HAS BEEN DELETED FROM THIS HERO SLOT -->
+            <p class="uppercase tracking-[10px] text-zinc-400 text-[10px] md:text-xs mt-8 mb-8 font-semibold">Cult Luxury Architecture</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4 w-full max-w-md">
                 <a href="#product" class="bg-white text-black text-center text-xs px-10 py-5 rounded-full uppercase tracking-[4px] font-black hover:bg-transparent hover:text-white border border-white transition-all duration-300 btn-premium flex-1">Shop Drop</a>
                 <a href="#about" class="border border-white/10 text-center text-xs px-10 py-5 rounded-full uppercase tracking-[4px] font-bold hover:border-white hover:bg-white/5 transition-all duration-300 flex-1">Explore Identity</a>
@@ -274,6 +271,7 @@
     <footer class="border-t border-white/5 py-24 px-6 bg-[#020202]">
         <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-xs">
             <div class="col-span-2 md:col-span-1">
+                <!-- LEAVE THE ONE AT THE END: Left intact here inside the footer layout -->
                 <img src="IMG-20260519-WA0003.jpg" alt="Logo Footer" class="w-40 opacity-40 mix-blend-lighten mb-6">
                 <p class="text-zinc-500 leading-relaxed max-w-xs normal-case text-sm">Conceptual streetwear laboratory built on dark architecture frameworks and underground systems.</p>
             </div>
