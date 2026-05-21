@@ -3,78 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sanity Leakage | Little Species</title>
+<title>Sanity Leakage</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-user-select:none;
-}
-
-body{
-font-family:'Inter',sans-serif;
-overflow-x:hidden;
-}
-
-/* SPLIT THEME */
-.top-half{
-background:white;
-color:black;
-}
-
-.bottom-half{
-background:black;
-color:white;
-}
-
-/* SMOOTH */
-html{
-scroll-behavior:smooth;
-}
-
-/* CART */
-.drawer{
-transition:0.5s ease;
-}
-
-/* BUTTON */
-.btn{
-transition:0.4s ease;
-}
-
-.btn:hover{
-transform:scale(1.03);
-}
-
-/* SWIPE */
-.slider{
-scroll-snap-type:x mandatory;
-overflow-x:auto;
-display:flex;
-}
-
-.slide{
-scroll-snap-align:center;
-flex:none;
-}
-
-::-webkit-scrollbar{
-display:none;
-}
-
-</style>
 </head>
 
-<body>
+<body class="font-[Inter] overflow-x-hidden">
 
 <!-- TOP HALF -->
-<section class="top-half min-h-screen relative">
+<section class="min-h-screen bg-white text-black">
 
 <!-- NAV -->
 <div class="flex justify-between items-center px-6 py-6 border-b border-black/10">
@@ -83,8 +21,9 @@ display:none;
 SANITY LEAKAGE
 </h1>
 
-<div class="flex gap-4 items-center">
+<div class="flex items-center gap-4 text-xl">
 
+<button onclick="toggleMenu()">☰</button>
 <button onclick="toggleFav()">♡</button>
 
 <button onclick="toggleCart()" class="relative">
@@ -96,50 +35,30 @@ SANITY LEAKAGE
 
 </div>
 
-<!-- HERO LOGO (BLACK ONLY) -->
+<!-- LOGO -->
 <div class="text-center py-20">
-
-<img src="IMG-20260519-WA0003.jpg"
-class="w-[280px] md:w-[600px] mx-auto">
-
-<p class="tracking-[10px] text-xs mt-8">
-EXCLUSIVE STREETWEAR DROP
-</p>
-
+<img src="IMG-20260519-WA0003.jpg" class="w-[300px] md:w-[650px] mx-auto">
+<p class="tracking-[10px] text-xs mt-6 text-zinc-500">LIMITED DROP</p>
 </div>
 
-<!-- PRODUCT SWIPE -->
+<!-- SWIPE GALLERY -->
 <div class="px-6">
+<div id="slider" class="flex overflow-x-auto gap-6 snap-x snap-mandatory scroll-smooth cursor-grab">
 
-<div class="slider gap-6" id="slider">
-
-<!-- IMAGE 1 (WHITE DESIGN) -->
-<div class="slide w-[90vw] md:w-[600px]">
-<img src="IMG_20260520_150513.jpg" class="rounded-[30px] w-full h-[600px] object-cover">
-</div>
-
-<!-- IMAGE 2 (BLACK DESIGN) -->
-<div class="slide w-[90vw] md:w-[600px]">
-<img src="IMG_20260520_150529.jpg" class="rounded-[30px] w-full h-[600px] object-cover">
-</div>
+<img src="IMG-20260519-WA0006" class="snap-center w-[90vw] md:w-[600px] rounded-[25px] h-[600px] object-cover">
+<img src="IMG-20260520-WA0000" class="snap-center w-[90vw] md:w-[600px] rounded-[25px] h-[600px] object-cover">
 
 </div>
-
 </div>
 
-<!-- PRODUCT INFO -->
+<!-- PRODUCT -->
 <div class="text-center py-16">
 
-<h2 class="text-4xl font-black uppercase">
-Reflective Jacket
-</h2>
-
-<p class="mt-4 text-zinc-500">
-R950 • One Product Only
-</p>
+<h2 class="text-4xl font-black uppercase">Reflective Windbreaker</h2>
+<p class="mt-3 text-zinc-500">R950 • One Product Only</p>
 
 <button onclick="addToCart()"
-class="mt-8 bg-black text-white px-10 py-4 rounded-full uppercase tracking-[4px] btn">
+class="mt-8 bg-black text-white px-10 py-4 rounded-full tracking-[4px] uppercase font-black btn">
 Add To Cart
 </button>
 
@@ -148,30 +67,23 @@ Add To Cart
 </section>
 
 <!-- BOTTOM HALF -->
-<section class="bottom-half py-32 px-6 text-center">
+<section class="min-h-screen bg-black text-white flex flex-col items-center justify-center px-6">
 
-<!-- QUOTE -->
-<h2 class="text-3xl md:text-5xl font-black leading-tight">
-“Made for the ones who were never meant to fit in.”
-</h2>
+<h1 class="text-3xl md:text-5xl font-black text-center max-w-2xl">
+“Built for the ones who were never meant to fit in.”
+</h1>
 
-<!-- SMALL BLACK LOGO -->
-<div class="mt-20">
-<img src="IMG-20260519-WA0001.jpg"
-class="w-28 mx-auto opacity-50">
-</div>
+<img src="IMG-20260519-WA0001.jpg" class="w-28 mt-16 opacity-60">
 
-<!-- CONTACT -->
-<div class="mt-20">
+<div class="mt-16 text-center">
 
-<p class="text-zinc-500 text-sm mb-6">
-Contact to order via Gmail only
-</p>
+<p class="text-zinc-500 text-sm mb-6">Order via Gmail only</p>
 
-<a href="mailto:Cruzaliancy@gmail.com?subject=Sanity%20Leakage%20Order"
-class="bg-white text-black px-10 py-5 rounded-full uppercase tracking-[4px] font-black btn inline-block">
+<a id="checkout"
+href="mailto:Cruzaliancy@gmail.com?subject=Order"
+class="bg-white text-black px-10 py-5 rounded-full font-black tracking-[4px] uppercase">
 
-Order Now
+Contact To Buy
 
 </a>
 
@@ -179,28 +91,28 @@ Order Now
 
 </section>
 
-<!-- CART DRAWER -->
-<div id="cart" class="drawer fixed top-0 right-0 w-[400px] h-full bg-black text-white p-6 translate-x-full border-l border-white/10">
+<!-- CART -->
+<div id="cart"
+class="fixed top-0 right-0 w-[380px] h-full bg-black text-white p-6 translate-x-full border-l border-white/10 transition">
 
 <div class="flex justify-between items-center border-b border-white/10 pb-4">
 
 <h2 class="font-bold uppercase tracking-[4px]">Basket</h2>
-
 <button onclick="toggleCart()">X</button>
 
 </div>
 
-<div id="cartItems" class="mt-6 text-sm text-zinc-400">
-Empty
-</div>
+<div id="items" class="mt-6 text-sm text-zinc-400">Empty</div>
 
 <div class="absolute bottom-6 left-0 w-full px-6">
 
-<a id="checkout"
-href="mailto:Cruzaliancy@gmail.com?subject=Order"
+<p class="text-sm mb-4">Total: R<span id="total">0</span></p>
+
+<a id="mail"
+href="mailto:Cruzaliancy@gmail.com"
 class="bg-white text-black w-full block text-center py-4 rounded-full font-black uppercase tracking-[3px]">
 
-Checkout via Gmail
+Checkout
 
 </a>
 
@@ -208,29 +120,91 @@ Checkout via Gmail
 
 </div>
 
+<!-- MENU -->
+<div id="menu"
+class="fixed top-0 left-0 w-full h-full bg-white text-black hidden flex-col items-center justify-center text-2xl font-black">
+
+<button onclick="toggleMenu()" class="absolute top-6 right-6 text-xl">X</button>
+
+<a href="#shop">Shop</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+
+</div>
+
 <script>
 
 let cart = [];
+let favState = false;
+
+// CART
+function addToCart(){
+cart.push("Reflective Windbreaker");
+updateCart();
+toggleCart();
+}
+
+function updateCart(){
+
+document.getElementById("count").innerText = cart.length;
+
+document.getElementById("items").innerHTML =
+cart.map((i,index)=>
+`<div class="flex justify-between border-b border-white/10 py-2">
+<p>${i}</p>
+<button onclick="removeItem(${index})">x</button>
+</div>`
+).join("");
+
+document.getElementById("total").innerText = cart.length * 950;
+
+document.getElementById("mail").href =
+"mailto:Cruzaliancy@gmail.com?subject=Order&body=" +
+encodeURIComponent("Order:\n" + cart.join("\n") + "\n\nTotal: R" + (cart.length * 950));
+}
+
+function removeItem(i){
+cart.splice(i,1);
+updateCart();
+}
 
 function toggleCart(){
 document.getElementById("cart").classList.toggle("translate-x-full");
 }
 
-function addToCart(){
-
-cart.push("Reflective Jacket");
-
-document.getElementById("count").innerText = cart.length;
-
-document.getElementById("cartItems").innerHTML =
-cart.map(item => `<p>• ${item}</p>`).join("");
-
-toggleCart();
-}
-
+// FAVORITE
 function toggleFav(){
-alert("Added to favorites ♡");
+favState = !favState;
+alert(favState ? "Added to favorites ♡" : "Removed from favorites");
 }
+
+// MENU
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("hidden");
+}
+
+// SWIPE DRAG (MOBILE FEEL)
+const slider = document.getElementById("slider");
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener("mousedown",(e)=>{
+isDown = true;
+startX = e.pageX - slider.offsetLeft;
+scrollLeft = slider.scrollLeft;
+});
+
+slider.addEventListener("mouseleave",()=>isDown=false);
+slider.addEventListener("mouseup",()=>isDown=false);
+
+slider.addEventListener("mousemove",(e)=>{
+if(!isDown) return;
+e.preventDefault();
+const x = e.pageX - slider.offsetLeft;
+const walk = (x - startX) * 2;
+slider.scrollLeft = scrollLeft - walk;
+});
 
 </script>
 
