@@ -241,6 +241,42 @@ R<span id="cartTotal">0</span>
 
 </div>
 
+<!-- ORDER FORM -->
+<div class="mt-10 border-t border-white/10 pt-10">
+
+<h3 class="text-2xl font-black mb-6 uppercase">
+Request Order
+</h3>
+
+<input 
+id="customerName"
+placeholder="Your Name"
+class="w-full p-4 rounded-full text-black mb-4">
+
+<input 
+id="customerPhone"
+placeholder="Phone Number"
+class="w-full p-4 rounded-full text-black mb-4">
+
+<input 
+id="customerEmail"
+placeholder="Your Gmail"
+class="w-full p-4 rounded-full text-black mb-4">
+
+<textarea
+id="customerNote"
+placeholder="Extra notes..."
+class="w-full p-5 rounded-[25px] text-black h-32 mb-5"></textarea>
+
+<button onclick="requestOrder()"
+class="w-full bg-white text-black py-5 rounded-full font-black tracking-[4px] hover:scale-[1.02] transition">
+
+REQUEST VIA GMAIL
+
+</button>
+
+</div>
+
 </div>
 
 </section>
@@ -478,6 +514,73 @@ cart.splice(index,1);
 saveCart();
 
 updateCart();
+
+}
+
+/* REQUEST ORDER */
+function requestOrder(){
+
+let name =
+document.getElementById("customerName").value;
+
+let phone =
+document.getElementById("customerPhone").value;
+
+let email =
+document.getElementById("customerEmail").value;
+
+let note =
+document.getElementById("customerNote").value;
+
+if(cart.length === 0){
+
+alert("Your bag is empty");
+
+return;
+
+}
+
+if(!name || !phone || !email){
+
+alert("Fill all required fields");
+
+return;
+
+}
+
+let items = cart.map(item =>
+`${item.name} - R${item.price}`
+).join("\n");
+
+let total = cart.reduce((sum,item)=>
+sum + item.price,0);
+
+let body = `
+
+SANITY LEAKAGE ORDER REQUEST
+
+NAME:
+${name}
+
+PHONE:
+${phone}
+
+GMAIL:
+${email}
+
+ITEMS:
+${items}
+
+TOTAL:
+R${total}
+
+EXTRA NOTES:
+${note}
+
+`;
+
+window.location.href =
+"mailto:Cruzaliancy@gmail.com?subject=Sanity Leakage Order&body=" + encodeURIComponent(body);
 
 }
 
