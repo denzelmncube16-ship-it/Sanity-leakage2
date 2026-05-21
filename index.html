@@ -55,7 +55,6 @@ transform:scale(1.02);
 
 <body>
 
-<!-- NAV -->
 <header class="flex justify-between items-center px-5 py-4 border-b border-white/10 bg-black sticky top-0 z-50">
 
 <h1 class="font-black tracking-[8px] text-sm">SANITY LEAKAGE</h1>
@@ -71,10 +70,8 @@ transform:scale(1.02);
 
 <!-- HOME -->
 <section id="home" class="page active px-5 pt-20 text-center">
-
 <div class="fade show">
 
-<!-- MAIN LOGO (ONLY LOGO USED EVERYWHERE) -->
 <img src="IMG-20260519-WA0003.jpg"
 class="w-[300px] md:w-[650px] mx-auto">
 
@@ -87,12 +84,10 @@ LITTLE DIFFERENT SPECIES
 </p>
 
 </div>
-
 </section>
 
 <!-- SHOP -->
 <section id="shop" class="page px-5 pt-20 text-center">
-
 <div class="fade">
 
 <h2 class="text-4xl font-black">SHOP</h2>
@@ -113,12 +108,10 @@ Add To Cart
 </button>
 
 </div>
-
 </section>
 
-<!-- ARCHIVE + RATINGS -->
+<!-- ARCHIVE -->
 <section id="archive" class="page px-5 pt-20 text-center">
-
 <div class="fade">
 
 <h2 class="text-4xl font-black">ARCHIVE</h2>
@@ -129,7 +122,6 @@ Add To Cart
 
 </div>
 
-<!-- REVIEWS -->
 <div class="mt-12 max-w-3xl mx-auto text-left">
 
 <h3 class="text-xl font-bold mb-4">Customer Reviews</h3>
@@ -138,7 +130,6 @@ Add To Cart
 
 </div>
 
-<!-- RATING SYSTEM -->
 <div class="mt-12 max-w-xl mx-auto text-left">
 
 <h3 class="text-xl font-bold mb-4">Rate Experience</h3>
@@ -162,12 +153,10 @@ Submit Rating
 </div>
 
 </div>
-
 </section>
 
-<!-- CUSTOM (BLACK + APPROVAL SYSTEM) -->
+<!-- CUSTOM -->
 <section id="drop" class="page px-5 pt-20 text-center">
-
 <div class="fade">
 
 <h2 class="text-4xl font-black">CUSTOM DESIGN STUDIO</h2>
@@ -189,7 +178,6 @@ Submit Request
 
 </div>
 
-<!-- STATUS ANIMATION -->
 <div id="statusBox" class="mt-10 hidden">
 <p id="statusText" class="text-sm text-zinc-400"></p>
 <div class="w-full h-1 bg-white/10 mt-3">
@@ -198,20 +186,17 @@ Submit Request
 </div>
 
 </div>
-
 </section>
 
 <script>
 
-/* NAV FIX */
+/* NAV */
 function go(page,el){
-
 document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
 document.getElementById(page).classList.add('active');
 
 document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
 if(el) el.classList.add('active');
-
 }
 
 /* CART */
@@ -220,7 +205,19 @@ function addToCart(){
 cart.push("Windbreaker");
 }
 
-/* REVIEWS */
+/* ---------------- SAVE REVIEWS ---------------- */
+
+function loadReviews(){
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+
+document.getElementById("reviews").innerHTML =
+reviews.length ? reviews.map(r=>`
+<div class="border border-white/10 p-3 rounded-xl">
+${r.email} rated ${"★".repeat(r.rating)}${"☆".repeat(5-r.rating)}
+</div>
+`).join("") : "<p class='text-zinc-500'>No reviews yet</p>";
+}
+
 function submitRating(){
 
 let email=document.getElementById("rateEmail").value;
@@ -228,17 +225,18 @@ let rating=document.getElementById("rating").value;
 
 if(!email) return;
 
-let review=document.createElement("div");
-review.className="border border-white/10 p-3 rounded-xl";
-review.innerText=`${email} rated ${"★".repeat(rating)}${"☆".repeat(5-rating)}`;
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
 
-document.getElementById("reviews").prepend(review);
+reviews.unshift({email,rating});
+
+localStorage.setItem("reviews", JSON.stringify(reviews));
 
 document.getElementById("rateEmail").value="";
 
+loadReviews();
 }
 
-/* CUSTOM APPROVAL SYSTEM */
+/* CUSTOM */
 function sendCustom(){
 
 let email=document.getElementById("email").value;
@@ -272,7 +270,9 @@ bar.style.width="100%";
 
 }
 
+/* INIT */
 document.querySelectorAll('.fade').forEach(f=>f.classList.add('show'));
+loadReviews();
 
 </script>
 
