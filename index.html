@@ -17,7 +17,6 @@ color:white;
 overflow-x:hidden;
 }
 
-/* NAV */
 nav button{
 opacity:0.5;
 font-size:11px;
@@ -29,11 +28,9 @@ opacity:1;
 font-weight:700;
 }
 
-/* PAGE SYSTEM */
 .page{display:none;}
 .page.active{display:block;}
 
-/* FADE */
 .fade{
 opacity:0;
 transform:translateY(40px);
@@ -45,25 +42,17 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* IMAGE STYLE */
 .img{
 transition:0.5s;
-filter: grayscale(100%);
 }
 
 .img:hover{
-filter: grayscale(0%);
 transform:scale(1.02);
 }
 
-/* INPUTS */
-input, textarea{
-outline:none;
-}
-
-/* RESPONSIVE FIX */
-@media(max-width:768px){
-h1,h2{letter-spacing:2px;}
+.white-page{
+background:white;
+color:black;
 }
 
 ::-webkit-scrollbar{display:none;}
@@ -88,7 +77,7 @@ h1,h2{letter-spacing:2px;}
 
 </header>
 
-<!-- ================= HOME ================= -->
+<!-- HOME -->
 <section id="home" class="page active px-5 pt-20 text-center">
 
 <div class="fade show">
@@ -104,38 +93,23 @@ STRUCTURED STREETWEAR SYSTEM
 “Built for those who exist outside the system.”
 </p>
 
-<!-- BRAND INFO BLOCK -->
-<div class="mt-12 grid md:grid-cols-3 gap-6 text-left max-w-5xl mx-auto text-sm text-zinc-400">
-
-<div class="border border-white/10 p-4 rounded-xl">
-CONTROL SYSTEM<br>
-We design identity-driven streetwear architecture.
-</div>
-
-<div class="border border-white/10 p-4 rounded-xl">
-DROP MODEL<br>
-Limited releases only. No mass production.
-</div>
-
-<div class="border border-white/10 p-4 rounded-xl">
-PHILOSOPHY<br>
-Culture is structure. Structure is control.
-</div>
-
+<div class="mt-10 text-xs text-zinc-500 space-y-2">
+<p>Culture is structure. Structure is control.</p>
+<p>Not clothing — controlled identity architecture.</p>
+<p>Limited drops only. No mass production.</p>
 </div>
 
 </div>
 
 </section>
 
-<!-- ================= SHOP ================= -->
+<!-- SHOP -->
 <section id="shop" class="page px-5 pt-20 text-center">
 
 <div class="fade">
 
 <h2 class="text-4xl font-black uppercase">Shop</h2>
 
-<!-- TWO PRODUCT IMAGES -->
 <div class="flex flex-col md:flex-row gap-6 justify-center mt-10">
 
 <img src="IMG-20260519-WA0006.jpg"
@@ -147,28 +121,24 @@ class="img w-full md:w-[45%] rounded-[25px]">
 </div>
 
 <h3 class="mt-8 text-2xl font-light">Reflective Windbreaker</h3>
-<p class="text-zinc-500">R950</p>
+<p class="text-zinc-400">R950</p>
 
 <button onclick="addToCart()"
 class="mt-6 bg-white text-black px-10 py-4 rounded-full font-black tracking-[4px]">
-
 Add To Cart
-
 </button>
 
 </div>
 
 </section>
 
-<!-- ================= ARCHIVE ================= -->
+<!-- ARCHIVE -->
 <section id="archive" class="page px-5 pt-20 text-center">
 
 <div class="fade">
 
 <h2 class="text-4xl font-black uppercase">Archive</h2>
-<p class="text-zinc-500 mt-2">Visual memory + customer feedback</p>
 
-<!-- ARCHIVE IMAGES -->
 <div class="flex gap-6 overflow-x-auto mt-10">
 
 <img src="IMG-20260519-WA0006.jpg"
@@ -179,17 +149,21 @@ class="img w-[80vw] md:w-[500px] rounded-[20px]">
 
 </div>
 
-<!-- REVIEWS SECTION -->
+<!-- REVIEWS -->
 <div class="mt-12 max-w-3xl mx-auto text-left">
 
 <h3 class="text-xl font-bold mb-4">Customer Reviews</h3>
 
 <div class="border border-white/10 p-4 rounded-xl mb-3">
-“Insane quality. Feels like a designer drop.” — ★★★★★
+“Insane quality. Designer-level drop.” ★★★★★
+</div>
+
+<div class="border border-white/10 p-4 rounded-xl mb-3">
+“Everyone asks where I got it.” ★★★★★
 </div>
 
 <div class="border border-white/10 p-4 rounded-xl">
-“Feels exclusive. Not like normal streetwear.” — ★★★★★
+“Feels exclusive and heavy.” ★★★★★
 </div>
 
 </div>
@@ -198,50 +172,5 @@ class="img w-[80vw] md:w-[500px] rounded-[20px]">
 
 </section>
 
-<!-- ================= CUSTOM DROP (WHITE STUDIO MODE) ================= -->
-<section id="drop" class="page px-5 pt-20 text-center bg-white text-black">
-
-<div class="fade">
-
-<h2 class="text-4xl font-black uppercase tracking-[4px]">
-Custom Design Studio
-</h2>
-
-<p class="text-zinc-600 mt-2 tracking-[2px]">
-Tell us what you want — we build your identity piece.
-</p>
-
-<!-- FORM -->
-<div class="mt-10 max-w-xl mx-auto text-left">
-
-<label class="text-xs tracking-[3px] text-zinc-500">GMAIL</label>
-<input id="email"
-placeholder="Enter your Gmail"
-class="w-full p-4 border border-black/20 rounded-full mt-2 mb-6">
-
-<label class="text-xs tracking-[3px] text-zinc-500">DESIGN REQUEST</label>
-<textarea id="design"
-placeholder="Describe your custom design idea..."
-class="w-full p-4 border border-black/20 rounded-xl mt-2 h-32"></textarea>
-
-<button onclick="sendCustom()"
-class="mt-6 w-full bg-black text-white py-4 rounded-full font-black tracking-[4px] hover:scale-105 transition">
-
-Submit Request
-
-</button>
-
-</div>
-
-<!-- BRAND NOTE -->
-<div class="mt-16 text-xs text-zinc-500 tracking-[2px]">
-Every design is reviewed manually. Limited acceptance only.
-</div>
-
-<!-- SMALL LOGO (SUBTLE) -->
-<img src="IMG-20260519-WA0001.jpg"
-class="w-20 mx-auto mt-14 opacity-40 mix-blend-multiply">
-
-</div>
-
-</section>
+<!-- CUSTOM (WHITE STUDIO) -->
+<section id="drop" class="page px
