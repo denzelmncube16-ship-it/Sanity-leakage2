@@ -8,83 +8,97 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+<style>
+/* ===== SCROLL REVEAL SYSTEM (LUXURY MOTION) ===== */
+.reveal{
+opacity:0;
+transform: translateY(40px);
+transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.show{
+opacity:1;
+transform: translateY(0);
+}
+
+/* stagger delays */
+.delay-1{ transition-delay: 0.1s; }
+.delay-2{ transition-delay: 0.2s; }
+.delay-3{ transition-delay: 0.35s; }
+
+/* parallax feel */
+.parallax{
+transform: translateY(0);
+transition: transform 0.2s linear;
+}
+
+/* hide scrollbar */
+::-webkit-scrollbar{ display:none; }
+</style>
+
 </head>
 
 <body class="font-[Inter] overflow-x-hidden bg-white text-black">
 
-<!-- ATMOSPHERE + NOISE -->
-<div class="fixed inset-0 pointer-events-none z-0">
+<!-- ATMOSPHERE -->
+<div class="fixed inset-0 pointer-events-none">
   <div class="absolute top-[-200px] left-[-200px] w-[600px] h-[600px] bg-black/5 blur-3xl rounded-full"></div>
   <div class="absolute bottom-[-200px] right-[-200px] w-[600px] h-[600px] bg-black/5 blur-3xl rounded-full"></div>
-
-  <!-- grain overlay -->
-  <div class="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/noise.png')]"></div>
 </div>
 
 <!-- NAV -->
-<header class="flex justify-between items-center px-6 py-6 border-b border-black/10 backdrop-blur-xl bg-white/70 sticky top-0 z-50">
+<header class="flex justify-between items-center px-6 py-6 border-b border-black/10 bg-white/70 backdrop-blur-xl sticky top-0 z-50 reveal">
 
-<h1 class="font-black tracking-[10px] text-sm">
-SANITY LEAKAGE
-</h1>
+<h1 class="font-black tracking-[10px] text-sm">SANITY LEAKAGE</h1>
 
-<div class="flex gap-5 text-xl items-center">
-
-<button onclick="toggleMenu()" class="hover:scale-110 transition">☰</button>
-<button onclick="toggleFav()" class="hover:scale-110 transition">♡</button>
-
-<button onclick="toggleCart()" class="relative hover:scale-110 transition">
-🛒
-<span id="count" class="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
-</button>
-
+<div class="flex gap-4 text-xl">
+<button>☰</button>
+<button>♡</button>
+<button onclick="toggleCart()">🛒</button>
 </div>
 
 </header>
 
 <!-- HERO -->
-<section class="text-center py-24 relative">
+<section class="text-center py-28">
 
-<!-- animated logo -->
-<img src="IMG-20260519-WA0003.jpg"
-class="w-[340px] md:w-[720px] mx-auto drop-shadow-[0_40px_80px_rgba(0,0,0,0.25)] animate-[pulse_6s_ease-in-out_infinite]">
+<img src="IMG-20260519-WA0001.jpg"
+class="w-[340px] md:w-[720px] mx-auto parallax reveal">
 
-<p class="tracking-[14px] text-xs text-zinc-500 mt-8">
+<p class="tracking-[14px] text-xs text-zinc-500 mt-10 reveal delay-1">
 LIMITED ARCHIVE DROP
 </p>
 
 </section>
 
 <!-- PRODUCT GALLERY -->
-<section class="px-6">
+<section class="px-6 reveal delay-2">
 
 <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth">
 
-<img onclick="openImg(this.src)"
-src="IMG-20260519-WA0006.jpg"
-class="snap-center w-[90vw] md:w-[600px] h-[650px] object-cover rounded-[35px] shadow-2xl hover:scale-[1.03] transition duration-500 cursor-zoom-in">
+<img src="IMG-20260519-WA0006.jpg"
+class="snap-center w-[90vw] md:w-[600px] h-[650px] object-cover rounded-[35px] shadow-2xl">
 
-<img onclick="openImg(this.src)"
-src="IMG-20260520-WA0000.jpg"
-class="snap-center w-[90vw] md:w-[600px] h-[650px] object-cover rounded-[35px] shadow-2xl hover:scale-[1.03] transition duration-500 cursor-zoom-in">
+<img src="IMG-20260520-WA0000.jpg"
+class="snap-center w-[90vw] md:w-[600px] h-[650px] object-cover rounded-[35px] shadow-2xl">
 
 </div>
 
 </section>
 
 <!-- PRODUCT INFO -->
-<section class="text-center py-16">
+<section class="text-center py-20 reveal delay-3">
 
 <h2 class="text-5xl font-black uppercase tracking-tight">
 Reflective Windbreaker
 </h2>
 
-<p class="text-zinc-500 mt-3 tracking-[4px] text-sm">
+<p class="text-zinc-500 mt-4 tracking-[4px] text-sm">
 R950 • SINGLE PIECE DROP
 </p>
 
 <button onclick="addToCart()"
-class="mt-10 bg-black text-white px-12 py-5 rounded-full uppercase tracking-[5px] font-black hover:scale-105 hover:shadow-2xl transition">
+class="mt-10 bg-black text-white px-12 py-5 rounded-full uppercase tracking-[5px] font-black hover:scale-105 transition">
 
 Add To Cart
 
@@ -93,22 +107,22 @@ Add To Cart
 </section>
 
 <!-- QUOTE -->
-<section class="bg-black text-white py-40 text-center px-6 relative overflow-hidden">
+<section class="bg-black text-white py-44 text-center px-6 relative overflow-hidden reveal">
 
-<div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent blur-3xl"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent"></div>
 
-<h2 class="text-4xl md:text-6xl font-black max-w-4xl mx-auto leading-tight relative z-10">
+<h2 class="text-4xl md:text-6xl font-black max-w-4xl mx-auto leading-tight">
 “Built for those who exist outside the system.”
 </h2>
 
-<img src="IMG-20260519-WA0001.jpg"
-class="w-28 mt-16 mx-auto opacity-70 relative z-10">
+<img src="IMG-20260519-WA0003.jpg"
+class="w-28 mt-16 mx-auto opacity-70">
 
 </section>
 
 <!-- CART -->
 <div id="cart"
-class="fixed top-0 right-0 w-[420px] h-full bg-black text-white p-6 translate-x-full transition duration-500 z-50 flex flex-col shadow-2xl">
+class="fixed top-0 right-0 w-[420px] h-full bg-black text-white p-6 translate-x-full transition duration-700 z-50 flex flex-col">
 
 <div class="flex justify-between border-b border-white/10 pb-4">
 <h2 class="font-bold tracking-[4px] uppercase">Basket</h2>
@@ -119,45 +133,37 @@ class="fixed top-0 right-0 w-[420px] h-full bg-black text-white p-6 translate-x-
 Empty
 </div>
 
-<div class="pt-4 border-t border-white/10">
-
-<p class="mb-4">Total: R<span id="total">0</span></p>
-
-<a id="mail"
-class="block bg-white text-black text-center py-4 rounded-full font-black uppercase tracking-[3px] hover:scale-105 transition">
-
-Checkout via Gmail
-
-</a>
-
-</div>
-
-</div>
-
-<!-- IMAGE MODAL -->
-<div id="modal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center">
-<img id="modalImg" class="max-w-[90%] max-h-[90%] rounded-2xl">
 </div>
 
 <script>
 
 let cart = [];
 
+/* ===== SCROLL REVEAL ENGINE (BALENCIAGA STYLE) ===== */
+function reveal(){
+const elements = document.querySelectorAll('.reveal');
+
+elements.forEach(el=>{
+const top = el.getBoundingClientRect().top;
+const windowHeight = window.innerHeight;
+
+if(top < windowHeight - 80){
+el.classList.add('show');
+}
+});
+}
+
+window.addEventListener('scroll', reveal);
+window.addEventListener('load', reveal);
+
+/* ===== CART ===== */
 function addToCart(){
 cart.push("Reflective Windbreaker");
 update();
 toggleCart();
 }
 
-function remove(i){
-cart.splice(i,1);
-update();
-}
-
 function update(){
-
-document.getElementById("count").innerText = cart.length;
-
 document.getElementById("items").innerHTML =
 cart.length ? cart.map((x,i)=>`
 <div class="flex justify-between border-b border-white/10 py-2">
@@ -165,33 +171,16 @@ cart.length ? cart.map((x,i)=>`
 <button onclick="remove(${i})">x</button>
 </div>
 `).join("") : "Empty";
+}
 
-document.getElementById("total").innerText = cart.length * 950;
-
-let body = "ORDER:\n\n" + cart.join("\n") + "\n\nTOTAL: R" + (cart.length * 950);
-
-document.getElementById("mail").href =
-"mailto:Cruzaliancy@gmail.com?subject=Order&body=" + encodeURIComponent(body);
-
+function remove(i){
+cart.splice(i,1);
+update();
 }
 
 function toggleCart(){
 document.getElementById("cart").classList.toggle("translate-x-full");
 }
-
-function toggleFav(){
-alert("Added to favorites ♡");
-}
-
-/* IMAGE ZOOM */
-function openImg(src){
-document.getElementById("modal").classList.remove("hidden");
-document.getElementById("modalImg").src = src;
-}
-
-document.getElementById("modal").onclick = () => {
-document.getElementById("modal").classList.add("hidden");
-};
 
 update();
 
