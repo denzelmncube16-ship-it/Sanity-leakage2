@@ -3,55 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sanity Leakage</title>
+<title>Sanity Leakage — Runway</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-/* ===== SCROLL REVEAL SYSTEM (LUXURY MOTION) ===== */
-.reveal{
-opacity:0;
-transform: translateY(40px);
-transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+/* ===== RUNWAY SYSTEM ===== */
+body{
+overflow-x:hidden;
+background:white;
+color:black;
+font-family:Inter;
 }
 
-.reveal.show{
+/* slow reveal like runway entrance */
+.runway{
+opacity:0;
+transform: translateY(60px);
+filter: blur(10px);
+transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.runway.show{
 opacity:1;
 transform: translateY(0);
+filter: blur(0);
 }
 
-/* stagger delays */
-.delay-1{ transition-delay: 0.1s; }
-.delay-2{ transition-delay: 0.2s; }
-.delay-3{ transition-delay: 0.35s; }
+/* staged delay system */
+.d1{ transition-delay: 0.15s; }
+.d2{ transition-delay: 0.3s; }
+.d3{ transition-delay: 0.45s; }
 
-/* parallax feel */
+/* parallax drift */
 .parallax{
-transform: translateY(0);
-transition: transform 0.2s linear;
+transform: translateY(0px);
+will-change: transform;
 }
 
 /* hide scrollbar */
 ::-webkit-scrollbar{ display:none; }
+
 </style>
 
 </head>
 
-<body class="font-[Inter] overflow-x-hidden bg-white text-black">
+<body>
 
 <!-- ATMOSPHERE -->
 <div class="fixed inset-0 pointer-events-none">
-  <div class="absolute top-[-200px] left-[-200px] w-[600px] h-[600px] bg-black/5 blur-3xl rounded-full"></div>
-  <div class="absolute bottom-[-200px] right-[-200px] w-[600px] h-[600px] bg-black/5 blur-3xl rounded-full"></div>
+<div class="absolute top-[-200px] left-[-200px] w-[700px] h-[700px] bg-black/5 blur-3xl rounded-full"></div>
+<div class="absolute bottom-[-200px] right-[-200px] w-[700px] h-[700px] bg-black/5 blur-3xl rounded-full"></div>
 </div>
 
-<!-- NAV -->
-<header class="flex justify-between items-center px-6 py-6 border-b border-black/10 bg-white/70 backdrop-blur-xl sticky top-0 z-50 reveal">
+<!-- RUNWAY HEADER -->
+<header class="flex justify-between items-center px-6 py-6 border-b border-black/10 bg-white/70 backdrop-blur-xl sticky top-0 z-50 runway">
 
-<h1 class="font-black tracking-[10px] text-sm">SANITY LEAKAGE</h1>
+<h1 class="tracking-[12px] font-black text-sm">SANITY LEAKAGE</h1>
 
-<div class="flex gap-4 text-xl">
+<div class="flex gap-5 text-xl">
 <button>☰</button>
 <button>♡</button>
 <button onclick="toggleCart()">🛒</button>
@@ -59,46 +71,42 @@ transition: transform 0.2s linear;
 
 </header>
 
-<!-- HERO -->
-<section class="text-center py-28">
+<!-- RUNWAY INTRO -->
+<section class="h-screen flex flex-col items-center justify-center text-center runway d1">
 
-<img src="IMG-20260519-WA0001.jpg"
-class="w-[340px] md:w-[720px] mx-auto parallax reveal">
+<img src="IMG-20260519-WA0003.jpg"
+class="w-[320px] md:w-[700px] parallax">
 
-<p class="tracking-[14px] text-xs text-zinc-500 mt-10 reveal delay-1">
-LIMITED ARCHIVE DROP
+<p class="mt-10 tracking-[18px] text-xs text-zinc-500">
+RUNWAY DROP // LOOK 01
 </p>
 
 </section>
 
-<!-- PRODUCT GALLERY -->
-<section class="px-6 reveal delay-2">
-
-<div class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth">
+<!-- RUNWAY LOOK 1 -->
+<section class="h-screen flex flex-col items-center justify-center text-center runway d2">
 
 <img src="IMG-20260519-WA0006.jpg"
-class="snap-center w-[90vw] md:w-[600px] h-[650px] object-cover rounded-[35px] shadow-2xl">
+class="w-[85vw] md:w-[600px] h-[650px] object-cover rounded-[40px] shadow-2xl">
 
-<img src="IMG-20260520-WA0000.jpg"
-class="snap-center w-[90vw] md:w-[600px] h-[650px] object-cover rounded-[35px] shadow-2xl">
-
-</div>
+<p class="mt-8 text-xl font-light tracking-[6px]">
+STRUCTURAL WIND BREAKER
+</p>
 
 </section>
 
-<!-- PRODUCT INFO -->
-<section class="text-center py-20 reveal delay-3">
+<!-- RUNWAY LOOK 2 -->
+<section class="h-screen flex flex-col items-center justify-center text-center runway d3">
 
-<h2 class="text-5xl font-black uppercase tracking-tight">
-Reflective Windbreaker
-</h2>
+<img src="IMG-20260520-WA0000.jpg"
+class="w-[85vw] md:w-[600px] h-[650px] object-cover rounded-[40px] shadow-2xl">
 
-<p class="text-zinc-500 mt-4 tracking-[4px] text-sm">
-R950 • SINGLE PIECE DROP
+<p class="mt-8 text-xl font-light tracking-[6px]">
+REFLECTIVE ARCHITECTURE
 </p>
 
 <button onclick="addToCart()"
-class="mt-10 bg-black text-white px-12 py-5 rounded-full uppercase tracking-[5px] font-black hover:scale-105 transition">
+class="mt-10 bg-black text-white px-12 py-5 rounded-full tracking-[6px] uppercase font-black hover:scale-105 transition">
 
 Add To Cart
 
@@ -106,17 +114,15 @@ Add To Cart
 
 </section>
 
-<!-- QUOTE -->
-<section class="bg-black text-white py-44 text-center px-6 relative overflow-hidden reveal">
+<!-- RUNWAY END -->
+<section class="h-screen bg-black text-white flex flex-col items-center justify-center text-center runway">
 
-<div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent"></div>
-
-<h2 class="text-4xl md:text-6xl font-black max-w-4xl mx-auto leading-tight">
-“Built for those who exist outside the system.”
+<h2 class="text-4xl md:text-6xl font-black max-w-4xl leading-tight">
+“Not clothing — a visual interruption in reality.”
 </h2>
 
-<img src="IMG-20260519-WA0003.jpg"
-class="w-28 mt-16 mx-auto opacity-70">
+<img src="IMG-20260519-WA0001.jpg"
+class="w-28 mt-16 opacity-60">
 
 </section>
 
@@ -125,11 +131,11 @@ class="w-28 mt-16 mx-auto opacity-70">
 class="fixed top-0 right-0 w-[420px] h-full bg-black text-white p-6 translate-x-full transition duration-700 z-50 flex flex-col">
 
 <div class="flex justify-between border-b border-white/10 pb-4">
-<h2 class="font-bold tracking-[4px] uppercase">Basket</h2>
+<h2 class="font-bold tracking-[6px] uppercase">RUNWAY BAG</h2>
 <button onclick="toggleCart()">X</button>
 </div>
 
-<div id="items" class="flex-1 mt-6 text-sm text-zinc-400 overflow-y-auto">
+<div id="items" class="flex-1 mt-6 text-sm text-zinc-400">
 Empty
 </div>
 
@@ -139,26 +145,26 @@ Empty
 
 let cart = [];
 
-/* ===== SCROLL REVEAL ENGINE (BALENCIAGA STYLE) ===== */
+/* ===== RUNWAY SCROLL ENGINE ===== */
 function reveal(){
-const elements = document.querySelectorAll('.reveal');
+const items = document.querySelectorAll('.runway');
 
-elements.forEach(el=>{
+items.forEach(el=>{
 const top = el.getBoundingClientRect().top;
-const windowHeight = window.innerHeight;
+const trigger = window.innerHeight * 0.85;
 
-if(top < windowHeight - 80){
+if(top < trigger){
 el.classList.add('show');
 }
 });
 }
 
-window.addEventListener('scroll', reveal);
-window.addEventListener('load', reveal);
+window.addEventListener("scroll", reveal);
+window.addEventListener("load", reveal);
 
 /* ===== CART ===== */
 function addToCart(){
-cart.push("Reflective Windbreaker");
+cart.push("Runway Windbreaker");
 update();
 toggleCart();
 }
