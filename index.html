@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sanity Leakage — Little Defferent Species</title>
+<title>Sanity Leakage — Little Species</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -17,16 +17,26 @@ color:white;
 overflow-x:hidden;
 }
 
-/* TRANSPARENCY LAYER SYSTEM */
-.glass{
-background:rgba(255,255,255,0.03);
-backdrop-filter: blur(20px);
+/* NAV */
+nav button{
+opacity:0.5;
+font-size:11px;
+letter-spacing:3px;
 }
 
-/* FADE IN */
+nav button.active{
+opacity:1;
+font-weight:700;
+}
+
+/* PAGE SYSTEM */
+.page{display:none;}
+.page.active{display:block;}
+
+/* FADE */
 .fade{
 opacity:0;
-transform:translateY(50px);
+transform:translateY(40px);
 transition:1.2s cubic-bezier(0.16,1,0.3,1);
 }
 
@@ -35,33 +45,25 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* LOGO BLEND SYSTEM */
-.logo{
-mix-blend-mode: screen;
-opacity:0.85;
-filter: contrast(1.1);
-}
-
-/* NAV STYLE */
-nav button{
-opacity:0.6;
-letter-spacing:3px;
-font-size:11px;
-}
-
-nav button.active{
-opacity:1;
-}
-
 /* IMAGE STYLE */
 .img{
-transition:0.6s;
+transition:0.5s;
 filter: grayscale(100%);
 }
 
 .img:hover{
-transform:scale(1.02);
 filter: grayscale(0%);
+transform:scale(1.02);
+}
+
+/* INPUTS */
+input, textarea{
+outline:none;
+}
+
+/* RESPONSIVE FIX */
+@media(max-width:768px){
+h1,h2{letter-spacing:2px;}
 }
 
 ::-webkit-scrollbar{display:none;}
@@ -72,125 +74,175 @@ filter: grayscale(0%);
 
 <body>
 
-<!-- ATMOSPHERIC GLOW -->
-<div class="fixed inset-0 pointer-events-none">
-<div class="absolute top-[-200px] left-[-200px] w-[600px] h-[600px] bg-white/5 blur-3xl rounded-full"></div>
-<div class="absolute bottom-[-200px] right-[-200px] w-[600px] h-[600px] bg-white/5 blur-3xl rounded-full"></div>
-</div>
-
 <!-- NAV -->
-<header class="flex justify-between items-center px-6 py-5 border-b border-white/10 glass sticky top-0 z-50 fade show">
+<header class="flex justify-between items-center px-5 py-4 border-b border-white/10 bg-black sticky top-0 z-50">
 
-<h1 class="font-black tracking-[10px] text-sm">SANITY LEAKAGE</h1>
+<h1 class="font-black tracking-[8px] text-sm">SANITY LEAKAGE</h1>
 
-<nav class="flex gap-6">
+<nav class="flex gap-4 md:gap-6">
 <button class="active" onclick="go('home')">HOME</button>
 <button onclick="go('shop')">SHOP</button>
 <button onclick="go('archive')">ARCHIVE</button>
-<button onclick="go('drop')">DROP</button>
+<button onclick="go('drop')">CUSTOM</button>
 </nav>
 
 </header>
 
 <!-- ================= HOME ================= -->
-<section id="home" class="page px-6 pt-32 text-center fade show">
+<section id="home" class="page active px-5 pt-20 text-center">
 
-<!-- BLACK LOGO (TRANSPARENT BLEND) -->
+<div class="fade show">
+
 <img src="IMG-20260519-WA0003.jpg"
-class="logo w-[350px] md:w-[750px] mx-auto">
+class="w-[280px] md:w-[600px] mx-auto">
 
-<p class="mt-10 tracking-[14px] text-xs text-zinc-400">
-CULTURE IS STRUCTURE • STRUCTURE IS CONTROL
+<p class="mt-6 text-zinc-400 tracking-[10px] text-xs">
+STRUCTURED STREETWEAR SYSTEM
 </p>
 
-<p class="mt-6 text-sm text-zinc-500 max-w-xl mx-auto leading-relaxed">
-Sanity Leakage represents structured conceptual rebellion.  
-We engineer luxury anti-conformist silhouettes for outsiders who communicate through monochrome systems.
+<p class="mt-6 text-sm text-zinc-500 max-w-xl mx-auto">
+“Built for those who exist outside the system.”
 </p>
+
+<!-- BRAND INFO BLOCK -->
+<div class="mt-12 grid md:grid-cols-3 gap-6 text-left max-w-5xl mx-auto text-sm text-zinc-400">
+
+<div class="border border-white/10 p-4 rounded-xl">
+CONTROL SYSTEM<br>
+We design identity-driven streetwear architecture.
+</div>
+
+<div class="border border-white/10 p-4 rounded-xl">
+DROP MODEL<br>
+Limited releases only. No mass production.
+</div>
+
+<div class="border border-white/10 p-4 rounded-xl">
+PHILOSOPHY<br>
+Culture is structure. Structure is control.
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 <!-- ================= SHOP ================= -->
-<section id="shop" class="page px-6 pt-32 text-center hidden fade">
+<section id="shop" class="page px-5 pt-20 text-center">
 
-<h2 class="text-5xl font-black uppercase">Shop</h2>
+<div class="fade">
+
+<h2 class="text-4xl font-black uppercase">Shop</h2>
+
+<!-- TWO PRODUCT IMAGES -->
+<div class="flex flex-col md:flex-row gap-6 justify-center mt-10">
 
 <img src="IMG-20260519-WA0006.jpg"
-class="img w-[90%] md:w-[600px] mx-auto mt-10 rounded-[30px]">
+class="img w-full md:w-[45%] rounded-[25px]">
+
+<img src="IMG-20260520-WA0000.jpg"
+class="img w-full md:w-[45%] rounded-[25px]">
+
+</div>
 
 <h3 class="mt-8 text-2xl font-light">Reflective Windbreaker</h3>
-<p class="text-zinc-400">R950</p>
+<p class="text-zinc-500">R950</p>
 
 <button onclick="addToCart()"
-class="mt-8 bg-white text-black px-12 py-4 rounded-full font-black tracking-[4px] hover:scale-105 transition">
+class="mt-6 bg-white text-black px-10 py-4 rounded-full font-black tracking-[4px]">
 
 Add To Cart
 
 </button>
 
+</div>
+
 </section>
 
 <!-- ================= ARCHIVE ================= -->
-<section id="archive" class="page px-6 pt-32 text-center hidden fade">
+<section id="archive" class="page px-5 pt-20 text-center">
 
-<h2 class="text-5xl font-black uppercase">Archive</h2>
+<div class="fade">
 
-<p class="text-zinc-500 mt-3">visual memory fragments</p>
+<h2 class="text-4xl font-black uppercase">Archive</h2>
+<p class="text-zinc-500 mt-2">Visual memory + customer feedback</p>
 
+<!-- ARCHIVE IMAGES -->
 <div class="flex gap-6 overflow-x-auto mt-10">
 
-<img src="IMG-20260520-WA0000.jpg"
-class="img w-[80vw] md:w-[500px] rounded-[25px]">
-
 <img src="IMG-20260519-WA0006.jpg"
-class="img w-[80vw] md:w-[500px] rounded-[25px]">
+class="img w-[80vw] md:w-[500px] rounded-[20px]">
+
+<img src="IMG-20260520-WA0000.jpg"
+class="img w-[80vw] md:w-[500px] rounded-[20px]">
+
+</div>
+
+<!-- REVIEWS SECTION -->
+<div class="mt-12 max-w-3xl mx-auto text-left">
+
+<h3 class="text-xl font-bold mb-4">Customer Reviews</h3>
+
+<div class="border border-white/10 p-4 rounded-xl mb-3">
+“Insane quality. Feels like a designer drop.” — ★★★★★
+</div>
+
+<div class="border border-white/10 p-4 rounded-xl mb-3">
+“The design is heavy. People keep asking me where I got it.” — ★★★★★
+</div>
+
+<div class="border border-white/10 p-4 rounded-xl">
+“Feels exclusive. Not like normal streetwear.” — ★★★★★
+</div>
+
+</div>
 
 </div>
 
 </section>
 
-<!-- ================= DROP ================= -->
-<section id="drop" class="page px-6 pt-32 text-center hidden fade">
+<!-- ================= CUSTOM DROP ================= -->
+<section id="drop" class="page px-5 pt-20 text-center">
 
-<h2 class="text-5xl font-black uppercase">Drop 001</h2>
+<div class="fade">
 
-<p class="mt-4 text-zinc-400 tracking-[5px]">
-LIMITED ACCESS SYSTEM
+<h2 class="text-4xl font-black uppercase">Custom Design</h2>
+
+<p class="text-zinc-500 mt-2">
+Tell us what design you need — we build it for you.
 </p>
 
-<!-- YOUR BRAND MESSAGE / SLOGANS -->
-<div class="mt-10 max-w-2xl mx-auto text-sm text-zinc-400 leading-relaxed">
-
-<p>“Built for those who exist outside the system.”</p>
-<br>
-<p>“Not clothing — controlled identity architecture.”</p>
-<br>
-<p>“Culture is structure. Structure is control.”</p>
-
-</div>
+<!-- CUSTOM REQUEST -->
+<div class="mt-10 max-w-xl mx-auto">
 
 <input id="email"
-placeholder="Enter Gmail for access"
-class="mt-10 px-6 py-4 w-[80%] md:w-[400px] rounded-full text-black">
+placeholder="Your Gmail"
+class="w-full p-4 rounded-full text-black mb-4">
 
-<br>
+<textarea id="design"
+placeholder="Describe your custom design"
+class="w-full p-4 rounded-xl text-black h-32"></textarea>
 
-<button onclick="orderDrop()"
-class="mt-6 bg-white text-black px-10 py-4 rounded-full font-black tracking-[4px]">
+<button onclick="sendCustom()"
+class="mt-4 bg-white text-black px-10 py-4 rounded-full font-black tracking-[4px]">
 
-Request Access
+Request Design
 
 </button>
 
-<!-- SMALL BLEND LOGO -->
+</div>
+
 <img src="IMG-20260519-WA0001.jpg"
-class="w-20 mx-auto mt-16 opacity-50 mix-blend-screen">
+class="w-20 mx-auto mt-16 opacity-50">
+
+</div>
 
 </section>
 
 <!-- CART -->
 <div id="cart"
-class="fixed top-0 right-0 w-[400px] h-full bg-black border-l border-white/10 text-white p-6 translate-x-full transition duration-700">
+class="fixed top-0 right-0 w-[380px] h-full bg-black border-l border-white/10 p-6 translate-x-full transition z-50">
 
 <h2 class="font-bold tracking-[5px]">BAG</h2>
 
@@ -204,8 +256,8 @@ class="fixed top-0 right-0 w-[400px] h-full bg-black border-l border-white/10 te
 
 function go(page){
 
-document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));
-document.getElementById(page).classList.remove('hidden');
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(page).classList.add('active');
 
 document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
 event.target.classList.add('active');
@@ -248,26 +300,26 @@ function toggleCart(){
 document.getElementById("cart").classList.toggle("translate-x-full");
 }
 
-/* EMAIL ORDER */
-function orderDrop(){
+/* CUSTOM DESIGN EMAIL */
+function sendCustom(){
 
 let email = document.getElementById("email").value;
+let design = document.getElementById("design").value;
 
-if(!email){
-alert("Enter Gmail");
+if(!email || !design){
+alert("Fill everything");
 return;
 }
 
 let body = `
-DROP ACCESS REQUEST
+CUSTOM DESIGN REQUEST
 
 Email: ${email}
-Item: Drop 001 Access
-Status: Pending Approval
+Design: ${design}
 `;
 
 window.location.href =
-"mailto:Cruzaliancy@gmail.com?subject=Drop Request&body=" + encodeURIComponent(body);
+"mailto:Cruzaliancy@gmail.com?subject=Custom Design Request&body=" + encodeURIComponent(body);
 
 }
 
