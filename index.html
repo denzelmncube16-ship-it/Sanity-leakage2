@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sanity Leakage — Little Species</title>
+<title>Sanity Leakage — Little Different Species</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -69,10 +69,10 @@ color:black;
 <h1 class="font-black tracking-[8px] text-sm">SANITY LEAKAGE</h1>
 
 <nav class="flex gap-4 md:gap-6">
-<button class="active" onclick="go('home')">HOME</button>
-<button onclick="go('shop')">SHOP</button>
-<button onclick="go('archive')">ARCHIVE</button>
-<button onclick="go('drop')">CUSTOM</button>
+<button class="active" onclick="go('home', this)">HOME</button>
+<button onclick="go('shop', this)">SHOP</button>
+<button onclick="go('archive', this)">ARCHIVE</button>
+<button onclick="go('drop', this)">CUSTOM</button>
 </nav>
 
 </header>
@@ -159,7 +159,7 @@ class="img w-[80vw] md:w-[500px] rounded-[20px]">
 </div>
 
 <div class="border border-white/10 p-4 rounded-xl mb-3">
-“Everyone asks where I got it.” ★★★★★
+“Everyone keeps asking where I got it.” ★★★★★
 </div>
 
 <div class="border border-white/10 p-4 rounded-xl">
@@ -172,5 +172,148 @@ class="img w-[80vw] md:w-[500px] rounded-[20px]">
 
 </section>
 
-<!-- CUSTOM (WHITE STUDIO) -->
-<section id="drop" class="page px
+<!-- CUSTOM STUDIO -->
+<section id="drop" class="page px-5 pt-20 text-center white-page">
+
+<div class="fade">
+
+<h2 class="text-4xl font-black uppercase">Custom Design Studio</h2>
+
+<p class="text-zinc-600 mt-2">
+Tell us what you want — we build it.
+</p>
+
+<div class="mt-10 max-w-xl mx-auto text-left">
+
+<label>Gmail</label>
+<input id="email" class="w-full p-4 border border-black/20 rounded-full mb-6">
+
+<label>Design Request</label>
+<textarea id="design" class="w-full p-4 border border-black/20 rounded-xl h-32"></textarea>
+
+<button onclick="sendCustom()"
+class="mt-6 w-full bg-black text-white py-4 rounded-full font-black">
+Submit Request
+</button>
+
+</div>
+
+<!-- STATUS -->
+<div id="statusBox" class="mt-10 hidden">
+<p id="statusText">Idle</p>
+<div class="w-full h-1 bg-black/10 mt-3">
+<div id="statusBar" class="h-full bg-black w-0 transition-all duration-700"></div>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+/* FIXED NAV SYSTEM */
+function go(page, el){
+
+document.querySelectorAll('.page').forEach(p=>{
+p.classList.remove('active');
+});
+
+document.getElementById(page).classList.add('active');
+
+document.querySelectorAll('nav button').forEach(b=>{
+b.classList.remove('active');
+});
+
+if(el) el.classList.add('active');
+
+/* reset animations */
+document.querySelectorAll('.fade').forEach(f=>{
+f.classList.remove('show');
+setTimeout(()=>f.classList.add('show'),50);
+});
+
+}
+
+/* CART */
+let cart=[];
+
+function addToCart(){
+cart.push("Reflective Windbreaker");
+update();
+}
+
+function update(){
+
+let box = document.getElementById("cart");
+
+if(document.getElementById("items")){
+document.getElementById("items").innerHTML =
+cart.length ? cart.map((x,i)=>`
+<div class="flex justify-between border-b border-white/10 py-2">
+<p>${x}</p>
+<button onclick="remove(${i})">x</button>
+</div>`).join("") : "Empty";
+
+document.getElementById("total").innerText = cart.length * 950;
+}
+
+}
+
+function remove(i){
+cart.splice(i,1);
+update();
+}
+
+/* CUSTOM ANIMATION */
+function sendCustom(){
+
+let email=document.getElementById("email").value;
+let design=document.getElementById("design").value;
+
+if(!email||!design){alert("Fill all");return;}
+
+let box=document.getElementById("statusBox");
+let text=document.getElementById("statusText");
+let bar=document.getElementById("statusBar");
+
+box.classList.remove("hidden");
+
+text.innerText="Submitting...";
+bar.style.width="25%";
+
+setTimeout(()=>{
+text.innerText="Analyzing...";
+bar.style.width="55%";
+},1200);
+
+setTimeout(()=>{
+text.innerText="Reviewing...";
+bar.style.width="80%";
+},2400);
+
+setTimeout(()=>{
+text.innerText="Awaiting approval...";
+bar.style.width="100%";
+},3600);
+
+setTimeout(()=>{
+
+let body=`Email:${email}\nDesign:${design}`;
+
+window.location.href=
+"mailto:Cruzaliancy@gmail.com?subject=Custom Request&body="+encodeURIComponent(body);
+
+text.innerText="Request received ✓";
+
+},4500);
+
+}
+
+/* INIT */
+document.querySelectorAll('.fade').forEach(f=>f.classList.add('show'));
+
+</script>
+
+</body>
+</html>
