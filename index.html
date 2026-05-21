@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sanity Leakage — Little Different Species</title>
+<title>Sanity Leakage — Little Species</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-
 body{
 font-family:Inter;
 background:black;
@@ -17,16 +16,8 @@ color:white;
 overflow-x:hidden;
 }
 
-nav button{
-opacity:0.5;
-font-size:11px;
-letter-spacing:3px;
-}
-
-nav button.active{
-opacity:1;
-font-weight:700;
-}
+nav button{opacity:0.5;font-size:11px;letter-spacing:3px;}
+nav button.active{opacity:1;font-weight:700;}
 
 .page{display:none;}
 .page.active{display:block;}
@@ -34,31 +25,18 @@ font-weight:700;
 .fade{
 opacity:0;
 transform:translateY(40px);
-transition:1.2s cubic-bezier(0.16,1,0.3,1);
+transition:1s ease;
 }
-
 .fade.show{
 opacity:1;
 transform:translateY(0);
 }
 
-.img{
-transition:0.5s;
-}
-
-.img:hover{
-transform:scale(1.02);
-}
-
-.white-page{
-background:white;
-color:black;
-}
+.img{transition:0.4s;}
+.img:hover{transform:scale(1.02);}
 
 ::-webkit-scrollbar{display:none;}
-
 </style>
-
 </head>
 
 <body>
@@ -69,10 +47,10 @@ color:black;
 <h1 class="font-black tracking-[8px] text-sm">SANITY LEAKAGE</h1>
 
 <nav class="flex gap-4 md:gap-6">
-<button class="active" onclick="go('home', this)">HOME</button>
-<button onclick="go('shop', this)">SHOP</button>
-<button onclick="go('archive', this)">ARCHIVE</button>
-<button onclick="go('drop', this)">CUSTOM</button>
+<button class="active" onclick="go('home',this)">HOME</button>
+<button onclick="go('shop',this)">SHOP</button>
+<button onclick="go('archive',this)">ARCHIVE</button>
+<button onclick="go('drop',this)">CUSTOM</button>
 </nav>
 
 </header>
@@ -82,22 +60,17 @@ color:black;
 
 <div class="fade show">
 
+<!-- MAIN LOGO (ONLY LOGO USED EVERYWHERE) -->
 <img src="IMG-20260519-WA0003.jpg"
-class="w-[280px] md:w-[600px] mx-auto">
+class="w-[300px] md:w-[650px] mx-auto">
 
 <p class="mt-6 text-zinc-400 tracking-[10px] text-xs">
 STRUCTURED STREETWEAR SYSTEM
 </p>
 
-<p class="mt-6 text-sm text-zinc-500 max-w-xl mx-auto">
+<p class="mt-6 text-sm text-zinc-500">
 “Built for those who exist outside the system.”
 </p>
-
-<div class="mt-10 text-xs text-zinc-500 space-y-2">
-<p>Culture is structure. Structure is control.</p>
-<p>Not clothing — controlled identity architecture.</p>
-<p>Limited drops only. No mass production.</p>
-</div>
 
 </div>
 
@@ -108,23 +81,20 @@ STRUCTURED STREETWEAR SYSTEM
 
 <div class="fade">
 
-<h2 class="text-4xl font-black uppercase">Shop</h2>
+<h2 class="text-4xl font-black">SHOP</h2>
 
 <div class="flex flex-col md:flex-row gap-6 justify-center mt-10">
 
-<img src="IMG-20260519-WA0006.jpg"
-class="img w-full md:w-[45%] rounded-[25px]">
-
-<img src="IMG-20260520-WA0000.jpg"
-class="img w-full md:w-[45%] rounded-[25px]">
+<img src="IMG-20260519-WA0006.jpg" class="img w-full md:w-[45%] rounded-2xl">
+<img src="IMG-20260520-WA0000.jpg" class="img w-full md:w-[45%] rounded-2xl">
 
 </div>
 
-<h3 class="mt-8 text-2xl font-light">Reflective Windbreaker</h3>
+<h3 class="mt-8 text-2xl">Reflective Windbreaker</h3>
 <p class="text-zinc-400">R950</p>
 
 <button onclick="addToCart()"
-class="mt-6 bg-white text-black px-10 py-4 rounded-full font-black tracking-[4px]">
+class="mt-6 bg-white text-black px-10 py-4 rounded-full font-black">
 Add To Cart
 </button>
 
@@ -132,20 +102,17 @@ Add To Cart
 
 </section>
 
-<!-- ARCHIVE -->
+<!-- ARCHIVE + RATINGS -->
 <section id="archive" class="page px-5 pt-20 text-center">
 
 <div class="fade">
 
-<h2 class="text-4xl font-black uppercase">Archive</h2>
+<h2 class="text-4xl font-black">ARCHIVE</h2>
 
 <div class="flex gap-6 overflow-x-auto mt-10">
 
-<img src="IMG-20260519-WA0006.jpg"
-class="img w-[80vw] md:w-[500px] rounded-[20px]">
-
-<img src="IMG-20260520-WA0000.jpg"
-class="img w-[80vw] md:w-[500px] rounded-[20px]">
+<img src="IMG-20260519-WA0006.jpg" class="img w-[80vw] md:w-[500px] rounded-xl">
+<img src="IMG-20260520-WA0000.jpg" class="img w-[80vw] md:w-[500px] rounded-xl">
 
 </div>
 
@@ -154,17 +121,30 @@ class="img w-[80vw] md:w-[500px] rounded-[20px]">
 
 <h3 class="text-xl font-bold mb-4">Customer Reviews</h3>
 
-<div class="border border-white/10 p-4 rounded-xl mb-3">
-“Insane quality. Designer-level drop.” ★★★★★
+<div id="reviews" class="space-y-3"></div>
+
 </div>
 
-<div class="border border-white/10 p-4 rounded-xl mb-3">
-“Everyone keeps asking where I got it.” ★★★★★
-</div>
+<!-- RATING SYSTEM -->
+<div class="mt-12 max-w-xl mx-auto text-left">
 
-<div class="border border-white/10 p-4 rounded-xl">
-“Feels exclusive and heavy.” ★★★★★
-</div>
+<h3 class="text-xl font-bold mb-4">Rate Your Experience</h3>
+
+<input id="rateEmail" placeholder="Your email"
+class="w-full p-3 rounded-full text-black mb-3">
+
+<select id="rating" class="w-full p-3 rounded-full text-black mb-3">
+<option value="5">★★★★★ (5)</option>
+<option value="4">★★★★ (4)</option>
+<option value="3">★★★ (3)</option>
+<option value="2">★★ (2)</option>
+<option value="1">★ (1)</option>
+</select>
+
+<button onclick="submitRating()"
+class="w-full bg-white text-black py-3 rounded-full font-black">
+Submit Rating
+</button>
 
 </div>
 
@@ -172,27 +152,25 @@ class="img w-[80vw] md:w-[500px] rounded-[20px]">
 
 </section>
 
-<!-- CUSTOM STUDIO -->
-<section id="drop" class="page px-5 pt-20 text-center white-page">
+<!-- CUSTOM (FULL BLACK, NO LOGO) -->
+<section id="drop" class="page px-5 pt-20 text-center">
 
 <div class="fade">
 
-<h2 class="text-4xl font-black uppercase">Custom Design Studio</h2>
+<h2 class="text-4xl font-black">CUSTOM DESIGN STUDIO</h2>
 
-<p class="text-zinc-600 mt-2">
-Tell us what you want — we build it.
-</p>
+<p class="text-zinc-500 mt-2">We build identity pieces on request</p>
 
 <div class="mt-10 max-w-xl mx-auto text-left">
 
-<label>Gmail</label>
-<input id="email" class="w-full p-4 border border-black/20 rounded-full mb-6">
+<input id="email" placeholder="Gmail"
+class="w-full p-4 rounded-full text-black mb-4">
 
-<label>Design Request</label>
-<textarea id="design" class="w-full p-4 border border-black/20 rounded-xl h-32"></textarea>
+<textarea id="design" placeholder="Describe your design..."
+class="w-full p-4 rounded-xl text-black h-32"></textarea>
 
 <button onclick="sendCustom()"
-class="mt-6 w-full bg-black text-white py-4 rounded-full font-black">
+class="w-full mt-5 bg-white text-black py-4 rounded-full font-black">
 Submit Request
 </button>
 
@@ -200,9 +178,9 @@ Submit Request
 
 <!-- STATUS -->
 <div id="statusBox" class="mt-10 hidden">
-<p id="statusText">Idle</p>
-<div class="w-full h-1 bg-black/10 mt-3">
-<div id="statusBar" class="h-full bg-black w-0 transition-all duration-700"></div>
+<p id="statusText"></p>
+<div class="w-full h-1 bg-white/10 mt-3">
+<div id="statusBar" class="h-full bg-white w-0 transition-all"></div>
 </div>
 </div>
 
@@ -212,60 +190,44 @@ Submit Request
 
 <script>
 
-/* FIXED NAV SYSTEM */
-function go(page, el){
+/* PAGE SWITCH FIX */
+function go(page,el){
 
-document.querySelectorAll('.page').forEach(p=>{
-p.classList.remove('active');
-});
-
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
 document.getElementById(page).classList.add('active');
 
-document.querySelectorAll('nav button').forEach(b=>{
-b.classList.remove('active');
-});
-
+document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
 if(el) el.classList.add('active');
-
-/* reset animations */
-document.querySelectorAll('.fade').forEach(f=>{
-f.classList.remove('show');
-setTimeout(()=>f.classList.add('show'),50);
-});
 
 }
 
 /* CART */
 let cart=[];
-
 function addToCart(){
-cart.push("Reflective Windbreaker");
-update();
+cart.push("Windbreaker");
 }
 
-function update(){
+/* REVIEWS STORAGE */
+function submitRating(){
 
-let box = document.getElementById("cart");
+let email=document.getElementById("rateEmail").value;
+let rating=document.getElementById("rating").value;
 
-if(document.getElementById("items")){
-document.getElementById("items").innerHTML =
-cart.length ? cart.map((x,i)=>`
-<div class="flex justify-between border-b border-white/10 py-2">
-<p>${x}</p>
-<button onclick="remove(${i})">x</button>
-</div>`).join("") : "Empty";
+if(!email)return;
 
-document.getElementById("total").innerText = cart.length * 950;
+let review=`${email} rated ${"★".repeat(rating)}${"☆".repeat(5-rating)}`;
+
+let div=document.createElement("div");
+div.className="border border-white/10 p-3 rounded-xl";
+div.innerText=review;
+
+document.getElementById("reviews").prepend(div);
+
+document.getElementById("rateEmail").value="";
+
 }
 
-}
-
-function remove(i){
-cart.splice(i,1);
-update();
-}
-
-/* CUSTOM ANIMATION */
+/* CUSTOM SYSTEM (NO GMAIL REDIRECT ANYMORE) */
 function sendCustom(){
 
 let email=document.getElementById("email").value;
@@ -280,38 +242,29 @@ let bar=document.getElementById("statusBar");
 box.classList.remove("hidden");
 
 text.innerText="Submitting...";
-bar.style.width="25%";
+bar.style.width="30%";
 
 setTimeout(()=>{
 text.innerText="Analyzing...";
-bar.style.width="55%";
+bar.style.width="60%";
 },1200);
 
 setTimeout(()=>{
-text.innerText="Reviewing...";
-bar.style.width="80%";
+text.innerText="Reviewing design...";
+bar.style.width="90%";
 },2400);
 
 setTimeout(()=>{
-text.innerText="Awaiting approval...";
+text.innerText="Request received ✓";
 bar.style.width="100%";
+
+/* SAVE REQUEST LOCALLY */
+localStorage.setItem("custom_request",
+JSON.stringify({email,design,status:"pending"}));
+
 },3600);
 
-setTimeout(()=>{
-
-let body=`Email:${email}\nDesign:${design}`;
-
-window.location.href=
-"mailto:Cruzaliancy@gmail.com?subject=Custom Request&body="+encodeURIComponent(body);
-
-text.innerText="Request received ✓";
-
-},4500);
-
 }
-
-/* INIT */
-document.querySelectorAll('.fade').forEach(f=>f.classList.add('show'));
 
 </script>
 
