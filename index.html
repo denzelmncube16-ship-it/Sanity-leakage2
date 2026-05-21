@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -28,43 +29,43 @@ scroll-behavior:smooth;
 
 body{
 font-family:'Inter',sans-serif;
-background:#020202;
-color:white;
 overflow-x:hidden;
+background:#000;
+color:white;
 }
+
+/* SCROLLBAR */
 
 ::-webkit-scrollbar{
 width:6px;
 }
 
 ::-webkit-scrollbar-track{
-background:#050505;
+background:#000;
 }
 
 ::-webkit-scrollbar-thumb{
-background:#1f1f1f;
-border-radius:10px;
+background:#222;
+border-radius:20px;
 }
 
-.grid-bg{
-background-image:
-linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-background-size:50px 50px;
-}
+/* NAV */
 
 .blur-nav{
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(20px);
--webkit-backdrop-filter:blur(20px);
+background:rgba(255,255,255,0.78);
+backdrop-filter:blur(25px);
+-webkit-backdrop-filter:blur(25px);
+border-bottom:1px solid rgba(0,0,0,0.05);
 }
 
-.hero-overlay{
-background:
-linear-gradient(to bottom,
-rgba(0,0,0,0.15),
-rgba(0,0,0,0.85));
+/* HERO */
+
+.hero-white{
+background:white;
+color:black;
 }
+
+/* BUTTON */
 
 .btn-premium{
 position:relative;
@@ -82,7 +83,7 @@ height:100%;
 background:linear-gradient(
 90deg,
 transparent,
-rgba(255,255,255,0.1),
+rgba(255,255,255,0.25),
 transparent
 );
 transform:skewX(-25deg);
@@ -95,78 +96,57 @@ left:120%;
 opacity:1;
 }
 
-.nav-link{
-position:relative;
+/* PRODUCT SWIPER */
+
+.snap-container{
+scroll-snap-type:x mandatory;
 }
 
-.nav-link::after{
-content:'';
-position:absolute;
-bottom:-4px;
-left:0;
-width:100%;
-height:1px;
-background:white;
-transform:scaleX(0);
-transform-origin:right;
-transition:transform .4s ease;
+.snap-slide{
+scroll-snap-align:center;
+flex:none;
 }
 
-.nav-link:hover::after{
-transform:scaleX(1);
-transform-origin:left;
-}
+/* FADE */
 
-.product-card:hover img{
-transform:scale(1.05);
+.black-fade{
+background:linear-gradient(
+to bottom,
+white 0%,
+#f7f7f7 40%,
+#111 75%,
+#000 100%
+);
 }
 
 </style>
+
 </head>
 
-<body class="grid-bg">
+<body>
 
 <!-- NAVBAR -->
-<header class="fixed top-0 left-0 w-full z-50 border-b border-white/5 blur-nav">
+<header class="fixed top-0 left-0 w-full z-50 blur-nav">
 
 <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
 
-<!-- LOGO -->
 <div>
 
-<h1 class="uppercase tracking-[8px] font-black text-sm md:text-base">
+<h1 class="uppercase tracking-[8px] font-black text-black text-sm md:text-base">
 SANITY LEAKAGE
 </h1>
 
-<p class="text-[9px] text-zinc-500 tracking-[5px] uppercase mt-1">
+<p class="text-[9px] tracking-[5px] uppercase text-zinc-500 mt-1">
 Little Species
 </p>
 
 </div>
 
-<!-- NAV -->
-<nav class="hidden md:flex gap-10 uppercase text-[11px] tracking-[4px] text-zinc-400">
-
-<a href="#shop" class="nav-link hover:text-white transition">
-Shop
-</a>
-
-<a href="#about" class="nav-link hover:text-white transition">
-Identity
-</a>
-
-<a href="#contact" class="nav-link hover:text-white transition">
-Contact
-</a>
-
-</nav>
-
-<!-- CART -->
-<button onclick="toggleCart()" class="relative border border-white/10 bg-white/5 px-4 py-3 rounded-full hover:bg-white hover:text-black transition">
+<button onclick="toggleCart()" class="relative border border-black/10 bg-black text-white px-5 py-3 rounded-full hover:scale-105 transition-all duration-300">
 
 🛒
 
-<span id="cart-count" class="absolute -top-1 -right-1 bg-white text-black text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">
+<span id="cart-count" class="absolute -top-1 -right-1 bg-black text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">
 0
 </span>
 
@@ -176,10 +156,9 @@ Contact
 
 </header>
 
-<!-- CART DRAWER -->
-<div id="cart-drawer" class="fixed top-0 right-0 w-full md:w-[450px] h-screen bg-[#080808] border-l border-white/10 z-[100] translate-x-full transition-transform duration-500 p-8 flex flex-col">
+<!-- CART -->
+<div id="cart-drawer" class="fixed top-0 right-0 w-full md:w-[430px] h-screen bg-black z-[100] border-l border-white/10 translate-x-full transition-transform duration-500 p-8 flex flex-col justify-between">
 
-<!-- TOP -->
 <div>
 
 <div class="flex items-center justify-between border-b border-white/10 pb-6">
@@ -188,14 +167,13 @@ Contact
 Your Basket
 </h2>
 
-<button onclick="toggleCart()" class="text-zinc-500 hover:text-white transition uppercase text-xs">
+<button onclick="toggleCart()" class="text-zinc-500 hover:text-white transition text-xs uppercase">
 Close
 </button>
 
 </div>
 
-<!-- CART ITEMS -->
-<div id="cart-items" class="mt-8 space-y-5">
+<div id="cart-items" class="mt-8">
 
 <p class="text-zinc-500 text-sm">
 Your basket is empty.
@@ -205,7 +183,6 @@ Your basket is empty.
 
 </div>
 
-<!-- BOTTOM -->
 <div class="border-t border-white/10 pt-6">
 
 <div class="flex justify-between mb-6">
@@ -223,7 +200,7 @@ R0
 <a
 id="checkout-btn"
 href="mailto:Cruzaliancy@gmail.com?subject=Sanity%20Leakage%20Order"
-class="block w-full text-center bg-white text-black py-5 rounded-full uppercase tracking-[4px] font-black text-xs btn-premium hover:bg-transparent hover:text-white border border-white transition-all"
+class="block text-center w-full bg-white text-black py-5 rounded-full uppercase tracking-[4px] font-black text-xs hover:bg-transparent hover:text-white border border-white transition-all duration-500 btn-premium"
 >
 
 Contact To Buy
@@ -235,46 +212,34 @@ Contact To Buy
 </div>
 
 <!-- HERO -->
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+<section class="hero-white min-h-screen flex items-center justify-center relative overflow-hidden">
 
-<!-- BACKGROUND -->
-<div class="absolute inset-0">
+<div class="max-w-6xl mx-auto px-6 text-center relative z-10">
 
+<!-- BIG WHITE LOGO -->
 <img
-src="IMG-20260519-WA0006.jpg"
-class="w-full h-full object-cover opacity-20"
+src="IMG-20260519-WA0003.jpg"
+class="w-[330px] md:w-[850px] mx-auto object-contain opacity-100 mix-blend-multiply"
 >
 
-<div class="absolute inset-0 hero-overlay"></div>
+<p class="uppercase tracking-[10px] text-zinc-500 text-[10px] md:text-xs mt-10">
+Exclusive Luxury Underground Streetwear
+</p>
 
-</div>
-
-<!-- BIG LOGO -->
-<div class="relative z-10 text-center px-6">
-
-<img
-src="IMG-20260520-WA0000.jpg"
-class="w-[320px] md:w-[700px] mx-auto opacity-95 mix-blend-lighten"
->
-
-<h2 class="uppercase tracking-[12px] text-zinc-500 text-[10px] md:text-xs mt-8">
-Luxury Underground Streetwear
-</h2>
-
-<div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+<div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
 
 <a
-href="#shop"
-class="bg-white text-black px-10 py-5 rounded-full uppercase tracking-[4px] font-black text-xs hover:bg-transparent hover:text-white border border-white transition-all duration-500 btn-premium"
+href="#product"
+class="bg-black text-white px-12 py-5 rounded-full uppercase tracking-[4px] font-black text-xs hover:bg-white hover:text-black border border-black transition-all duration-500 btn-premium"
 >
 
-Shop Collection
+Explore Collection
 
 </a>
 
 <button
 onclick="toggleCart()"
-class="border border-white/10 px-10 py-5 rounded-full uppercase tracking-[4px] font-black text-xs hover:border-white hover:bg-white/5 transition-all"
+class="border border-black/10 px-12 py-5 rounded-full uppercase tracking-[4px] font-black text-xs hover:bg-black hover:text-white transition-all duration-500"
 >
 
 View Basket
@@ -287,100 +252,101 @@ View Basket
 
 </section>
 
-<!-- SHOP -->
-<section id="shop" class="max-w-7xl mx-auto px-6 py-32">
+<!-- PRODUCT -->
+<section id="product" class="black-fade py-32 overflow-hidden">
+
+<div class="max-w-7xl mx-auto px-6">
 
 <div class="text-center mb-20">
 
-<p class="uppercase tracking-[6px] text-zinc-500 text-xs mb-4">
+<p class="uppercase tracking-[8px] text-zinc-500 text-xs mb-4">
 Drop 001
 </p>
 
-<h2 class="text-5xl md:text-7xl font-black uppercase tracking-tight">
-Collection
+<h2 class="text-5xl md:text-7xl font-black uppercase tracking-tight text-black">
+Reflective Windbreaker
 </h2>
+
+<p class="text-zinc-500 max-w-xl mx-auto mt-6 leading-relaxed">
+One product. Multiple perspectives. Built for underground architecture and luxury anti-conformist culture.
+</p>
 
 </div>
 
-<!-- PRODUCTS -->
-<div class="grid md:grid-cols-2 gap-10">
+<!-- SWIPER -->
+<div class="relative">
 
-<!-- PRODUCT -->
-<div class="product-card border border-white/5 rounded-[30px] overflow-hidden bg-[#080808]">
+<div id="slider" class="snap-container flex overflow-x-auto gap-6 pb-4 scrollbar-hide">
 
-<div class="overflow-hidden">
+<!-- IMAGE 1 -->
+<div class="snap-slide w-[90vw] md:w-[600px]">
+
+<div class="rounded-[35px] overflow-hidden bg-black shadow-2xl">
 
 <img
 src="IMG_20260520_150513.jpg"
-class="w-full h-[650px] object-cover transition-transform duration-700"
+class="w-full h-[700px] object-cover"
 >
 
 </div>
 
-<div class="p-8">
-
-<div class="flex justify-between items-center mb-4">
-
-<h3 class="text-2xl font-black uppercase">
-Reflective Jacket
-</h3>
-
-<span class="text-xl font-light">
-R950
-</span>
-
 </div>
 
-<p class="text-zinc-400 text-sm leading-relaxed mb-8">
-Advanced monochrome architecture with reflective textures, oversized luxury structure, and underground design systems.
-</p>
+<!-- IMAGE 2 -->
+<div class="snap-slide w-[90vw] md:w-[600px]">
 
-<button
-onclick="addToCart('Reflective Jacket',950)"
-class="w-full bg-white text-black py-5 rounded-full uppercase tracking-[4px] font-black text-xs hover:bg-transparent hover:text-white border border-white transition-all duration-500 btn-premium"
->
-
-Add To Basket
-
-</button>
-
-</div>
-
-</div>
-
-<!-- PRODUCT -->
-<div class="product-card border border-white/5 rounded-[30px] overflow-hidden bg-[#080808]">
-
-<div class="overflow-hidden">
+<div class="rounded-[35px] overflow-hidden bg-black shadow-2xl">
 
 <img
 src="IMG_20260520_150529.jpg"
-class="w-full h-[650px] object-cover transition-transform duration-700"
+class="w-full h-[700px] object-cover"
 >
 
 </div>
 
-<div class="p-8">
-
-<div class="flex justify-between items-center mb-4">
-
-<h3 class="text-2xl font-black uppercase">
-Back Structure
-</h3>
-
-<span class="text-xl font-light">
-R950
-</span>
+</div>
 
 </div>
 
-<p class="text-zinc-400 text-sm leading-relaxed mb-8">
-Dark engineered silhouette architecture created for luxury anti-conformist streetwear culture.
+<!-- BUTTONS -->
+<div class="flex justify-center gap-4 mt-10">
+
+<button
+onclick="slideLeft()"
+class="w-14 h-14 rounded-full bg-black text-white hover:scale-110 transition-all"
+>
+
+←
+
+</button>
+
+<button
+onclick="slideRight()"
+class="w-14 h-14 rounded-full bg-black text-white hover:scale-110 transition-all"
+>
+
+→
+
+</button>
+
+</div>
+
+</div>
+
+<!-- PRODUCT INFO -->
+<div class="max-w-3xl mx-auto text-center mt-24">
+
+<div class="text-4xl font-light text-black mb-6">
+R950
+</div>
+
+<p class="text-zinc-700 leading-relaxed mb-10 text-lg">
+Advanced monochrome engineering with oversized architecture, reflective textures, and underground structural aesthetics.
 </p>
 
 <button
-onclick="addToCart('Back Structure',950)"
-class="w-full bg-white text-black py-5 rounded-full uppercase tracking-[4px] font-black text-xs hover:bg-transparent hover:text-white border border-white transition-all duration-500 btn-premium"
+onclick="addToCart()"
+class="bg-black text-white px-14 py-6 rounded-full uppercase tracking-[4px] font-black text-xs hover:bg-white hover:text-black border border-black transition-all duration-500 btn-premium"
 >
 
 Add To Basket
@@ -391,63 +357,33 @@ Add To Basket
 
 </div>
 
-</div>
-
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="py-40 border-y border-white/5 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent">
+<!-- QUOTE -->
+<section class="bg-black py-40 px-6 text-center">
 
-<div class="max-w-4xl mx-auto text-center px-6">
+<div class="max-w-4xl mx-auto">
 
-<p class="uppercase tracking-[8px] text-zinc-500 text-xs mb-5">
-Manifesto
-</p>
-
-<h2 class="text-5xl md:text-7xl font-black uppercase tracking-tight mb-10">
+<p class="uppercase tracking-[8px] text-zinc-600 text-[10px] mb-8">
 Little Species
+</p>
+
+<h2 class="text-3xl md:text-6xl font-black leading-tight tracking-tight">
+“Built for the people who were never meant to fit in.”
 </h2>
 
-<p class="text-zinc-400 text-lg md:text-xl leading-relaxed font-light">
-Sanity Leakage is a conceptual luxury streetwear system built for outsiders, underground creatives, and anti-conformist architecture culture.
-</p>
-
-</div>
-
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="py-32 px-6">
-
-<div class="max-w-4xl mx-auto text-center border border-white/10 rounded-[40px] p-10 md:p-20 bg-white/[0.02] backdrop-blur-xl">
-
-<p class="uppercase tracking-[6px] text-zinc-500 text-xs mb-4">
-Orders Only
-</p>
-
-<h2 class="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8">
-Contact To Buy
-</h2>
-
-<p class="text-zinc-400 max-w-xl mx-auto leading-relaxed mb-10">
-All purchases are handled directly through Gmail for secure order confirmation and custom communication.
-</p>
-
-<a
-href="mailto:Cruzaliancy@gmail.com?subject=Sanity%20Leakage%20Order"
-class="inline-block bg-white text-black px-12 py-5 rounded-full uppercase tracking-[4px] font-black text-xs hover:bg-transparent hover:text-white border border-white transition-all duration-500 btn-premium"
+<!-- SMALL BLACK LOGO -->
+<img
+src="IMG-20260519-WA0001.jpg"
+class="w-32 md:w-44 mx-auto mt-16 opacity-50 mix-blend-lighten"
 >
-
-Open Gmail Order
-
-</a>
 
 </div>
 
 </section>
 
 <!-- FOOTER -->
-<footer class="border-t border-white/5 py-12 text-center text-zinc-600 text-[10px] uppercase tracking-[4px]">
+<footer class="bg-black border-t border-white/5 py-10 text-center text-zinc-600 text-[10px] uppercase tracking-[4px]">
 
 © 2026 Sanity Leakage — Little Species
 
@@ -462,9 +398,12 @@ function toggleCart(){
 document.getElementById('cart-drawer').classList.toggle('translate-x-full');
 }
 
-function addToCart(name,price){
+function addToCart(){
 
-cart.push({name,price});
+cart.push({
+name:"Reflective Windbreaker",
+price:950
+});
 
 updateCart();
 
@@ -479,24 +418,25 @@ const cartCount = document.getElementById('cart-count');
 const cartTotal = document.getElementById('cart-total');
 const checkoutBtn = document.getElementById('checkout-btn');
 
-cartItems.innerHTML = '';
-
 let total = 0;
+
+cartItems.innerHTML = '';
 
 cart.forEach((item,index)=>{
 
 total += item.price;
 
 cartItems.innerHTML += `
-<div class="border border-white/5 rounded-2xl p-5 bg-white/[0.02]">
+
+<div class="border border-white/10 rounded-3xl p-5 mb-4 bg-white/[0.03]">
 
 <div class="flex justify-between items-start">
 
 <div>
 
-<h4 class="uppercase font-bold text-sm">
+<h3 class="uppercase font-black text-sm">
 ${item.name}
-</h4>
+</h3>
 
 <p class="text-zinc-500 text-xs mt-1">
 Luxury Streetwear Piece
@@ -522,6 +462,7 @@ Remove
 </div>
 
 </div>
+
 `;
 
 });
@@ -548,7 +489,8 @@ body += `• ${item.name} - R${item.price}%0D%0A`;
 
 body += `%0D%0ATotal: R${total}`;
 
-checkoutBtn.href = `mailto:Cruzaliancy@gmail.com?subject=Sanity%20Leakage%20Order&body=${body}`;
+checkoutBtn.href =
+`mailto:Cruzaliancy@gmail.com?subject=Sanity%20Leakage%20Order&body=${body}`;
 
 }
 
@@ -557,6 +499,26 @@ function removeItem(index){
 cart.splice(index,1);
 
 updateCart();
+
+}
+
+const slider = document.getElementById('slider');
+
+function slideLeft(){
+
+slider.scrollBy({
+left:-650,
+behavior:'smooth'
+});
+
+}
+
+function slideRight(){
+
+slider.scrollBy({
+left:650,
+behavior:'smooth'
+});
 
 }
 
